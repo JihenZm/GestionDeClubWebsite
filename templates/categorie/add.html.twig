@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+ <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+          <div class="card bg-secondary shadow border-0">
+        
+            <div class="card-body px-lg-5 py-lg-5">
+              {{ form_start(form,{attr:{novalidate: 'novalidate'}})}}
+            
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                    </div>
+                    {{ form_widget(form.Nom,{'attr':{'class':'form-control'}})}}
+                    {{ form_errors(form.Nom, {'attr': {'class': 'text-danger'}}) }}
+                  
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    {{ form_widget(form.CodeRacourci,{'attr':{'class':'form-control'}})}}
+                     {{ form_errors(form.CodeRacourci, {'attr': {'class': 'text-danger'}}) }}
+                  </div>
+                </div>
+               
+                
+                <div class="text-center">
+                {{ form_widget(form.Ajouter,{'attr':{'class':'btn btn-primary mt-4'}})}}
+                 
+                </div>
+             {{ form_end(form)}}
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

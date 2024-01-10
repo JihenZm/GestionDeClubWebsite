@@ -6,6 +6,7 @@ use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
@@ -19,6 +20,10 @@ class Categorie
     private ?string $Nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z0-9]*$/',
+        message: "Le code doit contenir des lettres et des chiffres, sans caractères spéciaux."
+    )]
     private ?string $CodeRacourci = null;
 
     #[ORM\OneToMany(mappedBy: 'Categorie', targetEntity: Licencie::class, orphanRemoval: true)]
