@@ -14,20 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class CategorieController extends AbstractController
 {
 
-    #[Route('/admin', name: 'admin')]
-    public function indexAdmin(): Response
-    {
-        
-
-        return $this->render('admin/index.html.twig');
-    }
-    #[Route('/', name: 'accueil')]
-    public function accueil(): Response
-    {
-        
-
-        return $this->render('landing.html.twig');
-    }
+   
 
 
     #[Route('/categorie', name: 'app_categorie')]

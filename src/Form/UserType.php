@@ -2,23 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Licencie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType; 
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 
-class LicencieType extends AbstractType
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('numLicence')
+        ->add('email')
         ->add('Nom')
-        ->add('Prenom')
-        ->add('categorie')
-        ->add('Ajouter', SubmitType::class)
+        ->add('photo')
+        ->add('telephone')
+        ->add('password', RepeatedType::class, [
+            'type'=>PasswordType::class,
+            'first_options'=>['label'=>'Password'],
+            'second_options'=>['label'=>'Confirm Password']
+        ]);
     ;
     }
 

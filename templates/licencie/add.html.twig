@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+ <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+          <div class="card bg-secondary shadow border-0">
+        
+            <div class="card-body px-lg-5 py-lg-5">
+              {{ form_start(form)}}
+               <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                    </div>
+                    {{ form_widget(form.Nom,{'attr':{'class':'form-control'}})}}              
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                    </div>
+                    {{ form_widget(form.Prenom,{'attr':{'class':'form-control'}})}}                
+                  </div>
+                </div>
+
+                 <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-badge"></i></span>
+                    </div>
+                    {{ form_widget(form.numLicence,{'attr':{'class':'form-control'}})}}      
+                  </div>
+                </div>        
+
+                 <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-badge"></i></span>
+                        </div>
+                        {{ form_widget(form.categorie, {'attr': {'class': 'form-control'}}) }}
+                        <!-- Assuming 'categorie' is a field in your form -->
+                        <select name="{{ form.categorie.vars.full_name }}" id="{{ form.categorie.vars.id }}">
+                            {% for categorie in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                <!-- Replace 'id' and 'name' with your category properties -->
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>    
+                <div class="text-center">
+                {{ form_widget(form.Ajouter,{'attr':{'class':'btn btn-primary mt-4'}})}}
+                 
+                </div>
+             {{ form_end(form)}}
+            </div>
+          </div>
+        </div>
+  </div>
+{% endblock %}

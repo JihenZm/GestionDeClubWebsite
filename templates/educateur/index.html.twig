@@ -1,20 +1,99 @@
-{% extends 'base.html.twig' %}
+ {% extends 'base.html.twig' %}
 
-{% block title %}Hello EducateurController!{% endblock %}
-
+{% block title %}Liste des Educateurs{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+   
+      <!-- Table -->
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Projet2/Gestion_De_Projet/src/Controller/EducateurController.php'|file_link(0) }}">src/Controller/EducateurController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Projet2/Gestion_De_Projet/templates/educateur/index.html.twig'|file_link(0) }}">templates/educateur/index.html.twig</a></code></li>
-    </ul>
-</div>
+
+     <div class="row mt-5">
+        <div class="col">
+          <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="text-white  mb-0">Educateurs</h3>
+                </div>
+                <div class="col text-right">
+                  <a href="{{ path('addEducateur') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle "></i> </a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="table-responsive">
+              <table class="table align-items-center table-dark table-flush">
+                <thead class="thead-dark">
+                  <tr>
+                    
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Numero de licence</th>
+                    <th scope="col">Contact</th>
+                   
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 {% for educateur in educateurs %}
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <a href="#" class="avatar rounded-circle mr-3">
+                          <img alt="Image placeholder" src="{{ asset('assets/img/theme/bootstrap.jpg')}}">
+                        </a>
+                        <div class="media-body">
+                          <span class="mb-0 text-sm"></span>
+                        </div>
+                      </div>
+                    </th>
+                    <td>
+         
+                    </td>
+                    <td>
+                      <span class="badge badge-dot mr-4">
+                        <i class="bg-warning"></i> {{ educateur.Email }}
+                      </span>
+                    </td>
+                    <td>
+                      
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                 
+                      
+                      </div>
+                    </td>
+                    <td class="actions"> 
+                        <div class="">
+                        <a href="{{ path('editEducateur', {'id': educateur.id}) }}" class="dropdown-item mr-1 "><i class="fas fa-edit"></i> </a>
+                        <a href="{{ path('deleteEducateur', {'id': educateur.id}) }}" class="dropdown-item"><i class="fas fa-trash-alt"></i> </a>   
+                        </div>
+                    </td>
+                  </tr>
+           
+               {% endfor %}
+                
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 {% endblock %}
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
