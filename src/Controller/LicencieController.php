@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Licencie;
+use App\Entity\Categorie;
 use App\Form\LicencieType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,19 +24,29 @@ class LicencieController extends AbstractController
     }
 
     #[Route('/addLicencie', name: 'addLicencie')]
-    public function addLicencie (Request $request, EntityManagerInterface $entityManager ): Response
+    public function addLicencie(Request $request, EntityManagerInterface $entityManager): Response
     {
-       $licencie = new Licencie();
-       $form = $this->createForm(LicencieType::class,$licencie);
-       $form->handleRequest($request);
-       if($form->isSubmitted() && $form->isValid()){
-        $entityManager->persist($licencie);
-        $entityManager->flush();
-        return $this->redirectToRoute('app_licencie');
-       }
-       return $this->render('licencie/add.html.twig', [
-        'form' => $form->createView(),
-    ]);
+        $licencie = new Licencie();
+    
+        $form = $this->createForm(LicencieType::class, $licencie);
+        $form->handleRequest($request);
+    
+        // Fetch categories from the database
+        $categories = $entityManager->getRepository(Categorie::class)->findAll();
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($licencie);
+            $entityManager->flush();
+            $contact = $form->get('contact')->getData();
+            $entityManager->persist($contact); 
+    
+            return $this->redirectToRoute('app_licencie');
+        }
+    
+        return $this->render('licencie/add.html.twig', [
+            'categories' => $categories,
+            'form' => $form->createView(),
+        ]);
     }
 
 

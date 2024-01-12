@@ -7,8 +7,13 @@
         <div class="col">
           <div class="card bg-default shadow">
             <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+        
               <h3 class="text-white mb-0">Licencies</h3>
-               <a href="{{ path('addLicencie') }}" class="btn btn-warning"><i class="fas fa-plus-circle "></i> </a>
+               <a href="{{ path('addLicencie') }}" class="btn btn-sm btn-warning"><i class="fas fa-plus-circle "></i> </a>
+                   <div class="col-auto">
+                                                      
+                 <input type="search" class="form-control" id="inputPassword2" placeholder="Search...">
+                   </div>
             </div>
 
            
@@ -16,7 +21,12 @@
               <table class="table align-items-center table-dark table-flush">
                 <thead class="thead-dark">
                   <tr>
-                    
+                  <th className="all">
+                    <div className="form-check">
+                      <input type="checkbox" className="form-check-input" id="customCheck1" />
+                      <label className="form-check-label" htmlFor="customCheck1"></label>
+                    </div>
+                  </th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
                     <th scope="col">Numero de licence</th>
@@ -29,36 +39,47 @@
                 <tbody>
                  {% for licencie in licencies %}
                   <tr>
+                   <td>
+                <div className="form-check">
+                  <input type="checkbox" className="form-check-input" id="customCheck1" />
+                  <label className="form-check-label" htmlFor="customCheck1"></label>
+                </div>
+              </td>
                     <th scope="row">
                       <div class="media align-items-center">
-                        <a href="#" class="avatar rounded-circle mr-3">
-                          <img alt="Image placeholder" src="{{ asset('assets/img/theme/bootstrap.jpg') }}">
-                        </a>
+                      
                         <div class="media-body">
-                          <span class="mb-0 text-sm"> {{ licence.Nom }}</span>
+                            <span class="badge badge-dot mr-4">
+                       {{ licencie.Nom }}
+                          </span>
                         </div>
                       </div>
                     </th>
                     <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i> {{ licence.Prenom }}
+                  
+                        <i class="bg-warning"></i> {{ licencie.Prenom }}
                       </span>
                     </td>
                    <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i> {{ licence.numLicence }}
-                      </span>
+                   
+                        <i class="bg-warning"></i> {{ licencie.numLicence }}
+                 
+                    </td>
+                   <td>
+                     
+                        <i class="bg-warning"></i> {{ licencie.contact.Nom }}
+              
                     </td>
                     <td>
-                      <div class="d-flex align-items-center">
-                 
-                      
-                      </div>
+                     
+                        <i class="bg-warning"></i> {{ licencie.categorie.Nom }}
+                     
                     </td>
+                
                     <td class="actions"> 
-                        <div class="">
-                        <a href="{{ path('editEducateur', {'id': licence.id}) }}" class="dropdown-item mr-1 "><i class="fas fa-edit"></i> </a>
-                        <a href="{{ path('deleteEducateur', {'id': licence.id}) }}" class="dropdown-item"><i class="fas fa-trash-alt"></i> </a>   
+                        <div class="d-flex">
+                        <a href="{{ path('editLicencie', {'id': licencie.id}) }}"  class="text-white mr-4"><i class="fas fa-edit"></i> </a>
+                        <a href="{{ path('deleteLicencie', {'id': licencie.id}) }}" class="text-white mr-1"><i class="fas fa-trash-alt"></i> </a>   
                         </div>
                     </td>
                   </tr>

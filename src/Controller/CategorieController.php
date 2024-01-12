@@ -14,9 +14,6 @@ use Doctrine\ORM\EntityManagerInterface;
 class CategorieController extends AbstractController
 {
 
-   
-
-
     #[Route('/categorie', name: 'app_categorie')]
     public function index(EntityManagerInterface $entityManager): Response
     {
