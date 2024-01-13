@@ -19,18 +19,14 @@ class LicencieType extends AbstractType
         $builder
         ->add('numLicence')
         ->add('Nom')
-        ->add('Prenom')
-        ->add('contact', EntityType::class, [
-            'class' => Contact::class,
-            'choice_label' => 'nomComplet', // ou 'prenomNom' selon vos besoins
-            // ... d'autres options
-        ])
+        ->add('Prenom')    
         ->add('categorie', EntityType::class, [
         'class' => Categorie::class,
         'choice_label' => 'Nom', // or any property you want to display in the dropdown
         // other options...
     ])
         ->add('contact', ContactType::class, [
+            'label' => false ,
             'data_class' => Contact::class,
         ])
         ->add('Ajouter', SubmitType::class)

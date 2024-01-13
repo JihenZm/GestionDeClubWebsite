@@ -23,6 +23,9 @@ class Licencie
     #[ORM\Column(length: 255)]
     private ?string $Prenom = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private ?bool $isEducateur = false;
+
     #[ORM\ManyToOne(inversedBy: 'licencies')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $Categorie = null;
@@ -92,6 +95,18 @@ class Licencie
     public function setContact(Contact $Contact): static
     {
         $this->Contact = $Contact;
+
+        return $this;
+    }
+
+    public function getIsEducateur(): ?bool
+    {
+        return $this->isEducateur;
+    }
+
+    public function setIsEducateur(?bool $isEducateur): static
+    {
+        $this->isEducateur = $isEducateur;
 
         return $this;
     }

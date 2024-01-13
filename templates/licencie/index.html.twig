@@ -1,25 +1,57 @@
+
+
 {% extends 'base.html.twig' %}
 {% block title %}Liste des Licencie{% endblock %}
 {% block body %}
    
-      <!-- Table -->
- <div class="row mt-5">
-        <div class="col">
-          <div class="card bg-default shadow">
-            <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
-        
-              <h3 class="text-white mb-0">Licencies</h3>
-               <a href="{{ path('addLicencie') }}" class="btn btn-sm btn-warning"><i class="fas fa-plus-circle "></i> </a>
-                   <div class="col-auto">
-                                                      
-                 <input type="search" class="form-control" id="inputPassword2" placeholder="Search...">
-                   </div>
-            </div>
+<!-- ... your existing code ... -->
 
-           
-            <div class="table-responsive">
-              <table class="table align-items-center table-dark table-flush">
-                <thead class="thead-dark">
+ <div class="row mt-5">
+    <div class="col">
+        <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="text-white mb-0">Licencies</h3>
+                </div>
+                <div class="d-flex align-items-center">
+                    <a href="{{ path('addLicencie') }}" class="btn btn-sm btn-warning mx-2"><i class="fas fa-plus-circle"></i> Add Licencie</a>
+                    <div class="col-auto">
+                        <select class="form-select" id="categoryFilter" aria-label="Category filter">
+                            <option value="" selected>Tous les Catégories</option>
+                            {# Add options for each category available in your application #}
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.Nom }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- ... rest of your code ... -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // Add JavaScript to handle category filtering
+    document.getElementById('categoryFilter').addEventListener('change', function () {
+        var selectedCategoryId = this.value;
+        var rows = document.querySelectorAll('.licencie-row');
+
+        rows.forEach(function (row) {
+            var categoryId = row.getAttribute('data-category-id');
+
+            if (selectedCategoryId === '' || selectedCategoryId === categoryId) {
+                row.style.display = 'table-row';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<div class="table-responsive">
+    <table class="table align-items-center table-dark table-flush">
+          <thead class="thead-dark">
                   <tr>
                   <th className="all">
                     <div className="form-check">
@@ -36,9 +68,13 @@
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
+
+
+                  <tbody>
                  {% for licencie in licencies %}
-                  <tr>
+                    <tr class="licencie-row" data-category-id="{{ licencie.categorie.id }}">
+                    <!-- ... your existing table cells ... -->
+                
                    <td>
                 <div className="form-check">
                   <input type="checkbox" className="form-check-input" id="customCheck1" />
@@ -67,7 +103,7 @@
                     </td>
                    <td>
                      
-                        <i class="bg-warning"></i> {{ licencie.contact.Nom }}
+                        <i class="bg-warning"></i> {{ licencie.Nom }}
               
                     </td>
                     <td>
@@ -79,7 +115,13 @@
                     <td class="actions"> 
                         <div class="d-flex">
                         <a href="{{ path('editLicencie', {'id': licencie.id}) }}"  class="text-white mr-4"><i class="fas fa-edit"></i> </a>
-                        <a href="{{ path('deleteLicencie', {'id': licencie.id}) }}" class="text-white mr-1"><i class="fas fa-trash-alt"></i> </a>   
+                        <a href="{{ path('deleteLicencie', {'id': licencie.id}) }}" class="text-white mr-1"><i class="fas fa-trash-alt"></i> </a>
+                       
+                    
+                      <form method="post" action="{{ path('changer_statut_educateur', {'id': licencie.id}) }}">
+            <button type="submit">Change</button>
+        </form>
+                        
                         </div>
                     </td>
                   </tr>
@@ -87,21 +129,17 @@
                {% endfor %}
                 
                 </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+       
+    </table>
+</div>
 
 {% endblock %}
 
+
  
  
  
- 
- 
- 
+
  
  
  

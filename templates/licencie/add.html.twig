@@ -25,7 +25,14 @@
                         {{ form_label(form.categorie, null, {'label_attr': {'class': 'form-control-label'}}) }}
                         {{ form_widget(form.categorie, {'attr': {'class': 'form-control'}}) }}
                     </div>
-
+                   <div class="form-group">
+                        {{ form_label(form.contact.Telephone, null, {'label_attr': {'class': 'form-control-label'}}) }}
+                        {{ form_widget(form.contact.Telephone, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.contact.Email, null, {'label_attr': {'class': 'form-control-label'}}) }}
+                        {{ form_widget(form.contact.Email, {'attr': {'class': 'form-control'}}) }}
+                    </div>
                     <div class="text-center">
                         {{ form_widget(form.Ajouter, {'attr': {'class': 'btn btn-primary mt-4'}}) }}
                     </div>

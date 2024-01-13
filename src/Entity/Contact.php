@@ -14,10 +14,10 @@ class Contact
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Nom = null;
+    private ?string $Nom ;
 
     #[ORM\Column(length: 255)]
-    private ?string $Prenom = null;
+    private ?string $Prenom ;
 
     #[ORM\Column(length: 255)]
     private ?string $Email = null;

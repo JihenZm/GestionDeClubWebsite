@@ -46,7 +46,7 @@
               <td scope="row">
                 <div className="media align-items-center">
                   <div className="media-body">
-                    <span className="mb-0 text-sm">{{ categorie.Nom }}</span>
+                    <a  href="{{ path('app_contacts_by_category', {'id': categorie.id})}}" > <span  className="mb-0 text-sm">{{ categorie.Nom }}</span></a>
                   </div>
                 </div>
               </td>
@@ -54,9 +54,9 @@
                 {{ categorie.CodeRacourci }}
               </td>
               <td class="actions"> 
-                <div class="">
-                  <a href="{{ path('editCategorie', {'id': categorie.id}) }}" class="dropdown-item mr-1 "><i class="fas fa-edit"></i> </a>
-                  <a href="{{ path('deleteCategorie', {'id': categorie.id}) }}" class="dropdown-item"><i class="fas fa-trash-alt"></i> </a>   
+                <div class="d-flex">
+                  <a href="{{ path('editCategorie', {'id': categorie.id}) }}" class=" mr-4 "><i class="fas fa-edit"></i> </a>
+                  <a href="{{ path('deleteCategorie', {'id': categorie.id}) }}" class=""><i class="fas fa-trash-alt"></i> </a>   
                 </div>
               </td>
             </tr>
@@ -70,24 +70,6 @@
   </div> 
   </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   </div>
 

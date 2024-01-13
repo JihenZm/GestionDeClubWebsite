@@ -1,20 +1,108 @@
+{# templates/contact/index.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
-
+{% block title %}Contacts for {% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+ <div class="row mt-5">
+        <div class="col ">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">Contacts</h3>
+                </div>
+              
+              </div>
+            </div>
+            
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+  <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th className="all">
+                <div className="form-check">
+                  <input type="checkbox" className="form-check-input" id="customCheck1" />
+                  <label className="form-check-label" htmlFor="customCheck1"></label>
+                </div>
+              </th>
+              <th scope="col">Nom</th>
+              <th scope="col">Prénom</th>
+              <th scope="col">Email</th>
+              <th scope="col">Téléphone</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for contact in contacts %}
+            <tr>
+              <td>
+                <div className="form-check">
+                  <input type="checkbox" className="form-check-input" id="customCheck1" />
+                  <label className="form-check-label" htmlFor="customCheck1"></label>
+                </div>
+              </td>
+              <td scope="row">
+                <div className="media align-items-center">
+                  <div className="media-body">
+                     <span  className="mb-0 text-sm">{{ contact.Nom }} </span>
+                  </div>
+                </div>
+              </td>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Projet2/Gestion_De_Projet/src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Projet2/Gestion_De_Projet/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
-    </ul>
-</div>
+                <td scope="row">
+                <div className="media align-items-center">
+                  <div className="media-body">
+                     <span  className="mb-0 text-sm">{{ contact.Prenom }}</span>
+                  </div>
+                </div>
+              </td>
+
+               <td scope="row">
+                <div className="media align-items-center">
+                  <div className="media-body">
+                     <span  className="mb-0 text-sm">{{ contact.Email }}</span>
+                  </div>
+                </div>
+              </td>
+
+               <td scope="row">
+                <div className="media align-items-center">
+                  <div className="media-body">
+                     <span  className="mb-0 text-sm">{{ contact.Telephone }}</span>
+                  </div>
+                </div>
+              </td>
+
+
+
+               
+           
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  </div> 
+  </div>
+  </div>
+  
+  </div>
+
+    
+    
+    </div>
+
+
+
+
+
+
+
+
+
+
+   
 {% endblock %}
