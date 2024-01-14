@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 #[ORM\Entity(repositoryClass: MailEduRepository::class)]
 class MailEdu
@@ -16,8 +18,8 @@ class MailEdu
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $DateEnvoi = null;
+    #[ORM\Column(length: 255)]
+    private ?String $DateEnvoi = null;
 
     #[ORM\Column(length: 255)]
     private ?string $objet = null;
@@ -38,12 +40,12 @@ class MailEdu
         return $this->id;
     }
 
-    public function getDateEnvoi(): ?\DateTimeInterface
+    public function getDateEnvoi(): ?string
     {
         return $this->DateEnvoi;
     }
 
-    public function setDateEnvoi(\DateTimeInterface $DateEnvoi): static
+    public function setDateEnvoi(string $DateEnvoi): static
     {
         $this->DateEnvoi = $DateEnvoi;
 
@@ -97,4 +99,7 @@ class MailEdu
 
         return $this;
     }
+
+
+   
 }

@@ -3,13 +3,17 @@
 {% block title %}Liste des Emails{% endblock %}
 
 {% block body %}
-    <div class="card">
+    {# <div class="card">
         <div class="card-body">
             <div class="row mb-2">
                 <div class="col-sm-5">
-                    <a href="javascript:void(0);" class="btn btn-danger mb-2">
-                        <i class="mdi mdi-plus-circle me-2"></i> Add Products
-                    </a>
+                     <div class="d-flex align-items-center">
+               
+                    <h3 class=" mb-0">Email</h3>
+                      <a href="{{ path('addLicencie') }}" class="btn btn-sm btn-warning mx-2"><i class="fas fa-plus-circle"></i></a>
+          
+               
+                  </div>
                 </div>
             </div>
 
@@ -80,5 +84,175 @@
                 </div>
             </div> <!-- end card-body-->
         </div>
+    </div> #}
+
+
+
+
+
+
+{# 
+<div class="row">
+    <!-- Right Sidebar -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="mt-3">
+                    <ul class="email-list">
+                        <li class="unread">
+                            <div class="email-sender-info d-flex align-items-center">
+                                <div class="checkbox-wrapper-mail">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="mail1">
+                                        <label class="form-check-label" for="mail1"></label>
+                                    </div>
+                                </div>
+                                <span class="star-toggle mdi mdi-star-outline text-warning"></span>
+                                <a href="javascript:void(0);" class="email-title">Lucas Kriebel (via Twitter)</a>
+                            </div>
+                            <div class="email-content">
+                                <a href="javascript:void(0);" class="email-subject">Lucas Kriebel (@LucasKriebel) has sent you a direct message on Twitter! –
+                                    <span>@LucasKriebel - Very cool :) Nicklas, You have a new direct message.</span>
+                                </a>
+                                <div class="email-date">11:49 am</div>
+                            </div>
+                            <div class="email-action-icons">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <a href="javascript:void(0);"><i class="mdi mdi-archive email-action-icons-item"></i></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="javascript:void(0);"><i class="mdi mdi-delete email-action-icons-item"></i></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="javascript:void(0);"><i class="mdi mdi-email-open email-action-icons-item"></i></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="javascript:void(0);"><i class="mdi mdi-clock email-action-icons-item"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
+                                                    <hr/>
+                                                 
+                                      
+                                                </ul>
+                                            </div>
+                          
+                                        </div> 
+                                        <!-- end inbox-rightbar-->
+                                    </div>
+                                    <!-- end card-body -->
+                                    <div class="clearfix"></div>
+                                </div> <!-- end card-box -->
+
+                            </div> <!-- end Col -->
+                        </div> #}
+
+
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+               
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="inbox" aria-labelledby="inbox-tab" role="tabpanel">
+                        <div>
+                            <div class="row p-4 no-gutters align-items-center">
+                                <div class="col-sm-12 col-md-6">
+                                    <h3 class="font-light mb-0"><i class="ti-email mr-2"></i>Boite Email Educateurs</h3>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <ul class="list-inline dl mb-0 float-left float-md-right">
+                                        <li class="list-inline-item text-info mr-3">
+                                            <a href="#">
+                                             <a href="{{  path('add_email_edu')  }}" class="btn btn-sm btn-warning mx-2"><i class="fas fa-plus-circle"></i></a>
+          
+                                               
+                                                <span class="ml-2 font-normal text-dark"></span>
+                                            </a>
+                                        </li>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Mail list-->
+                            <div class="table-responsive">
+                                <table class="table email-table no-wrap table-hover v-middle mb-0 font-14">
+                                    <tbody>
+                                     {% for email in emailEdus %}
+                                        <!-- row -->
+                                        <tr>
+                                            <!-- label -->
+                                            <td class="pl-3">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="cst1" />
+                                                    <label class="custom-control-label" for="cst1">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            <!-- star -->
+                                            <td><i class="fa fa-star text-warning"></i></td>
+                                           <td>
+                                            <a class="link" href="javascript: void(0)">
+                                                <span class="mb-0 text-muted">
+                                                    {% for educateur in email.Educateurs %}
+                                                        {{ educateur.email }}{% if not loop.last %}, {% endif %}
+                                                    {% endfor %}
+                                                </span>
+                                            </a>
+                                        </td>
+                                            <!-- Message -->
+                                            <td>
+                                                <a class="link" href="javascript: void(0)">
+                                                    <span class="badge badge-pill text-dark font-medium badge-danger mr-2">{{ email.objet}}</span>
+                                                   
+                                                </a>
+                                            </td>
+                                            <td class="text-muted">{{ email.message }}</td>
+                                            <td class="text-muted">{{ email.DateEnvoi}}</td>
+                                            
+                                            
+                                            
+                                            <td> <a href="{{ path('deleteEmailEdu', {'id': email.id})}}" class="btn btn-sm btn-danger mx-2"> <i class="fa fa-trash"></i></a>
+                                               
+                                               </td>
+                                        </tr>
+                                        <!-- row -->
+                                   
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+               
+                   
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                        
 {% endblock %}

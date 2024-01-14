@@ -141,21 +141,26 @@
           </li>
           <li class="nav-item">
             <a class="nav-link " href="{{ path('app_licencie') }}">
-              <i class="ni ni-single-02 text-yellow"></i> Licenciés
+              <i class="ni ni-single-02 text-danger"></i> Licenciés
             </a>
           </li>
-            <li class="nav-item">
+            {# <li class="nav-item">
               <a class="nav-link" href="{{ path('app_contact') }}">
                 <i class="ni ni-mobile-button text-primary"></i> Contact
               </a>
-          </li>
+          </li> #}
        
 
            <li class="nav-item">
             <a class="nav-link " href="{{ path('app_mail_edu') }}">
-              <i class="ni ni-email-83 text-orange"></i> Emails Envoyés
+              <i class="ni ni-email-83 text-primary"></i> Mails Educateurs
             </a>
           </li>      
+           <li class="nav-item">
+            <a class="nav-link " href="{{ path('app_mail_contact') }}">
+              <i class="ni ni-email-83 text-danger"></i> Mails Licenciés
+            </a>
+          </li> 
         </ul>
             {% endblock %}
       

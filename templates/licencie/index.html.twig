@@ -8,28 +8,27 @@
 
  <div class="row mt-5">
     <div class="col">
-        <div class="card bg-default shadow">
-            <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
-                <div>
-                    <h3 class="text-white mb-0">Licencies</h3>
-                </div>
+        <div class="card shadow">
+            <div class="card-header border-0 d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
-                    <a href="{{ path('addLicencie') }}" class="btn btn-sm btn-warning mx-2"><i class="fas fa-plus-circle"></i> Add Licencie</a>
-                    <div class="col-auto">
-                        <select class="form-select" id="categoryFilter" aria-label="Category filter">
+               
+                    <h3 class=" mb-0">Licencies</h3>
+                      <a href="{{ path('addLicencie') }}" class="btn btn-sm btn-warning mx-2"><i class="fas fa-plus-circle"></i></a>
+          
+               
+                  </div>
+                     <div class="col-auto">
+                        <select class="form-control" id="categoryFilter" aria-label="Category filter">
                             <option value="" selected>Tous les Catégories</option>
                             {# Add options for each category available in your application #}
                             {% for category in categories %}
                                 <option value="{{ category.id }}">{{ category.Nom }}</option>
                             {% endfor %}
                         </select>
-                    </div>
-                </div>
+                </div> 
             </div>
             <!-- ... rest of your code ... -->
-        </div>
-    </div>
-</div>
+  
 
 <script>
     // Add JavaScript to handle category filtering
@@ -50,8 +49,8 @@
 </script>
 
 <div class="table-responsive">
-    <table class="table align-items-center table-dark table-flush">
-          <thead class="thead-dark">
+    <table class="table align-items-center  table-flush">
+          <thead class="thead-light">
                   <tr>
                   <th className="all">
                     <div className="form-check">
@@ -64,7 +63,7 @@
                     <th scope="col">Numero de licence</th>
                     <th scope="col">Contact</th>
                     <th scope="col">Catégorie</th>
-                   
+                    <th scope="col">Role</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -85,15 +84,15 @@
                       <div class="media align-items-center">
                       
                         <div class="media-body">
-                            <span class="badge badge-dot mr-4">
+                            <span class="name mb-0 text-sm">
                        {{ licencie.Nom }}
                           </span>
                         </div>
                       </div>
                     </th>
                     <td>
-                  
-                        <i class="bg-warning"></i> {{ licencie.Prenom }}
+                         <a  href="{{ path('app_contacts_by_category', {'id': licencie.id})}}" >
+                        <i class="bg-warning"></i> {{ licencie.Prenom }}</a>
                       </span>
                     </td>
                    <td>
@@ -103,27 +102,43 @@
                     </td>
                    <td>
                      
-                        <i class="bg-warning"></i> {{ licencie.Nom }}
+                        <i class="bg-warning"></i> {{ licencie.contact.Email }}
               
                     </td>
-                    <td>
-                     
-                        <i class="bg-warning"></i> {{ licencie.categorie.Nom }}
-                     
-                    </td>
-                
-                    <td class="actions"> 
-                        <div class="d-flex">
-                        <a href="{{ path('editLicencie', {'id': licencie.id}) }}"  class="text-white mr-4"><i class="fas fa-edit"></i> </a>
-                        <a href="{{ path('deleteLicencie', {'id': licencie.id}) }}" class="text-white mr-1"><i class="fas fa-trash-alt"></i> </a>
-                       
                     
-                      <form method="post" action="{{ path('changer_statut_educateur', {'id': licencie.id}) }}">
-            <button type="submit">Change</button>
-        </form>
-                        
-                        </div>
-                    </td>
+
+                    <td>
+                  {% set category = licencie.categorie.Nom %}
+                  
+                  {% if category == 'Categorie 1' %}
+                      <span class="badge badge-pill text-black font-medium badge-primary mr-2">{{ category }}</span>
+                  {% elseif category == 'Categorie 2' %}
+                      <span class="badge badge-pill text-black font-medium badge-success mr-2">{{ category }}</span>
+                  {% elseif category == 'Categorie 3'  %}
+                      <span class="badge badge-pill text-black font-medium badge-danger mr-2">{{ category }}</span>
+                  {% endif %}
+                 </td>
+
+                
+                  <td class="actions"> 
+               
+                    
+                    <form method="post" action="{{ path('changer_statut_educateur', {'id': licencie.id}) }}">
+                        <button type="submit" class="btn btn-link">
+                            <i class="fas fa-user text-success"></i> 
+                        </button>
+                    </form>
+                
+                </td>
+                
+                  <td class="actions"> 
+                <div class="d-flex">
+                    <a href="{{ path('editLicencie', {'id': licencie.id}) }}"  class="mr-4" style="color: grey;"><i class="fas fa-edit"></i></a>
+                    <a href="{{ path('deleteLicencie', {'id': licencie.id}) }}"  class="mr-4" style="color: red;"><i class="fas fa-trash-alt"></i></a>
+                
+                </div>
+                </td>
+
                   </tr>
            
                {% endfor %}
@@ -131,6 +146,9 @@
                 </tbody>
        
     </table>
+</div>
+      </div>
+    </div>
 </div>
 
 {% endblock %}

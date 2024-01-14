@@ -3,18 +3,99 @@
 {% block title %}Hello MailContactController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Projet2/Gestion_De_Projet/src/Controller/MailContactController.php'|file_link(0) }}">src/Controller/MailContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Projet2/Gestion_De_Projet/templates/mail_contact/index.html.twig'|file_link(0) }}">templates/mail_contact/index.html.twig</a></code></li>
-    </ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+             
+                  
+           
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="inbox" aria-labelledby="inbox-tab" role="tabpanel">
+                        <div>
+                            <div class="row p-4 no-gutters align-items-center">
+                                <div class="col-sm-12 col-md-6">
+                                    <h3 class="font-light mb-0"><i class="ti-email mr-2"></i>Emails Licenciés</h3>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <ul class="list-inline dl mb-0 float-left float-md-right">
+                                        <li class="list-inline-item text-info mr-3">
+                                            <a href="#">
+                                             <a href="{{  path('add_email_contact')  }}" class="btn btn-sm btn-success mx-2"><i class="fas fa-plus-circle"></i></a>
+          
+                                              
+                                                <span class="ml-2 font-normal text-dark"></span>
+                                            </a>
+                                        </li>
+
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Mail list-->
+                            <div class="table-responsive">
+                                <table class="table email-table no-wrap table-hover v-middle mb-0 font-14">
+                                    <tbody>
+                                     {% for email in emailContacts %}
+                                        <!-- row -->
+                                        <tr>
+                                            <!-- label -->
+                                            <td class="pl-3">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="cst1" />
+                                                    <label class="custom-control-label" for="cst1">&nbsp;</label>
+                                                </div>
+                                            </td>
+                                            
+                                            <!-- star -->
+                                            <td><i class="fa fa-star text-warning"></i></td>
+                                             <td>
+                                            <a class="link" href="javascript: void(0)">
+                                                <span class="mb-0 text-muted">
+                                                    {% for licencie in email.Licencies %}
+                                                        {{ licencie.Nom }}{% if not loop.last %}, {% endif %}
+                                                    {% endfor %}
+                                                </span>
+                                            </a>
+                                        </td>
+                                            <td>
+                                                <span class="mb-0 text-muted"></span>
+                                            </td>
+                                            <!-- Message -->
+                                            <td>
+                                                <a class="link" href="javascript: void(0)">
+                                                    <span class="badge badge-pill text-black font-medium badge-danger mr-2">{{ email.Objet}}</span>
+                                                    {# <span class="text-dark">{{ email.Objet}}</span> #}
+                                                </a>
+                                            </td>
+                                           <!-- Time -->
+                                            <td class="text-muted">{{ email.Message }}</td>
+                                            <td class="text-muted">{{ email.DateEnvoi}}</td>
+                                            {# <td class="text-muted">{{ email.DateEnvoi|date('d/m/Y')}}</td> #}
+                                          
+                                            <td> <a href="{{  path('deleteEmailContact', {'id': email.id})  }}" class="btn btn-sm btn-danger mx-2"> <i class="fa fa-trash"></i></a>
+                                               
+                                                <span class="ml-2 font-normal text-dark"></span>
+                                         
+                                        </tr>
+                                        <!-- row -->
+                                   
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+             
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+                        
 {% endblock %}

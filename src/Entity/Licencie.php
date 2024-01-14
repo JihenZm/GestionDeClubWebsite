@@ -34,6 +34,10 @@ class Licencie
     #[ORM\JoinColumn(nullable: false)]
     private ?Contact $Contact = null;
 
+    #[ORM\ManyToOne(inversedBy: 'licencies')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Educateur $educateur = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,6 +111,18 @@ class Licencie
     public function setIsEducateur(?bool $isEducateur): static
     {
         $this->isEducateur = $isEducateur;
+
+        return $this;
+    }
+
+    public function getEducateur(): ?Educateur
+    {
+        return $this->educateur;
+    }
+
+    public function setEducateur(?Educateur $educateur): static
+    {
+        $this->educateur = $educateur;
 
         return $this;
     }

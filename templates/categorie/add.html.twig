@@ -12,7 +12,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    {{ form_widget(form.Nom,{'attr':{'class':'form-control'}})}}
+                    {{ form_widget(form.Nom,{'attr':{'class':'form-control', 'placeholder': 'Nom Categorie'}})}}
                     {{ form_errors(form.Nom, {'attr': {'class': 'text-danger'}}) }}
                   
                   </div>
@@ -23,14 +23,14 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    {{ form_widget(form.CodeRacourci,{'attr':{'class':'form-control'}})}}
+                    {{ form_widget(form.CodeRacourci,{'attr':{'class':'form-control', 'placeholder': 'Code Categorie'}})}}
                      {{ form_errors(form.CodeRacourci, {'attr': {'class': 'text-danger'}}) }}
                   </div>
                 </div>
                
                 
                 <div class="text-center">
-                {{ form_widget(form.Ajouter,{'attr':{'class':'btn btn-primary mt-4'}})}}
+                 {{ form_widget(form.Ajouter,{'attr':{'class':'btn btn-primary mt-4'}})}}
                  
                 </div>
              {{ form_end(form)}}

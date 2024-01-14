@@ -61,7 +61,23 @@ class EducateurController extends AbstractController
         ]);
     }
     
-    
+    #[Route('/changer_statut_educateur/{id}', name: 'app_educateur_change_status')]
+    public function changeStatus(int $id, EntityManagerInterface $entityManager): Response
+    {
+        $educateur = $entityManager->getRepository(Educateur::class)->find($id);
+
+        if (!$educateur) {
+            throw $this->createNotFoundException('Éducateur non trouvé avec l\'ID ' . $id);
+        }
+
+        // Mettre à jour le statut isAdmin à true
+        $educateur->setIsAdmin(true);
+         
+        // Enregistrez les modifications en base de données
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_educateur');
+    }
     #[Route('/deleteEducateur/{id}', name: 'deleteEducateur')]
     public function deleteEducateur(int $id, EntityManagerInterface $entityManager): Response
     {   

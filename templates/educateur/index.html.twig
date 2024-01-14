@@ -7,71 +7,82 @@
 
 
 
-     <div class="row mt-5">
-        <div class="col">
-          <div class="card bg-default shadow">
-            <div class="card-header bg-transparent border-0">
+        <div class="row mt-5">
+        <div class="col ">
+          <div class="card shadow">
+            <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="text-white  mb-0">Educateurs</h3>
+                  <h3 class=" mb-0">Educateurs</h3>
                 </div>
-                <div class="col text-right">
-                  <a href="{{ path('addEducateur') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle "></i> </a>
-                </div>
+               
               </div>
             </div>
-            
-            <div class="table-responsive">
-              <table class="table align-items-center table-dark table-flush">
-                <thead class="thead-dark">
+<div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
                   <tr>
-                    
+                     <th className="all">
+                    <div className="form-check">
+                      <input type="checkbox" className="form-check-input" id="customCheck1" />
+                      <label className="form-check-label" htmlFor="customCheck1"></label>
+                    </div>
+                  </th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénom</th>
                     <th scope="col">Email</th>
                     <th scope="col">Numero de licence</th>
-                    <th scope="col">Contact</th>
-                   
-                    <th scope="col">Actions</th>
+                     <th scope="col">Status</th>
+                     <th scope="col">Action</th>
+          
                   </tr>
                 </thead>
                 <tbody>
                  {% for educateur in educateurs %}
                   <tr>
+                   <td>
+                <div className="form-check">
+                  <input type="checkbox" className="form-check-input" id="customCheck1" />
+                  <label className="form-check-label" htmlFor="customCheck1"></label>
+                </div>
+              </td>
                     <th scope="row">
                       <div class="media align-items-center">
-                        <a href="#" class="avatar rounded-circle mr-3">
-                          <img alt="Image placeholder" src="{{ asset('assets/img/theme/bootstrap.jpg')}}">
-                        </a>
+                        
                         <div class="media-body">
-                          <span class="mb-0 text-sm"></span>
+                         
+                          <span class="name mb-0 text-sm">{{ educateur.Nom }}</span>
                         </div>
                       </div>
                     </th>
                     <td>
-         
+                      <span class=" name mb-0 text-sm">{{ educateur.Prenom}}</span>
                     </td>
                     <td>
-                      <span class="badge badge-dot mr-4">
+                   
                         <i class="bg-warning"></i> {{ educateur.Email }}
-                      </span>
-                    </td>
-                    <td>
-                      
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
                  
+                    </td>
+                     <td>
                       
-                      </div>
+                        <i class="bg-warning"></i> {{ educateur.numLicence }}
+                    
                     </td>
-                    <td class="actions"> 
-                        <div class="">
-                        <a href="{{ path('editEducateur', {'id': educateur.id}) }}" class="dropdown-item mr-1 "><i class="fas fa-edit"></i> </a>
-                        <a href="{{ path('deleteEducateur', {'id': educateur.id}) }}" class="dropdown-item"><i class="fas fa-trash-alt"></i> </a>   
-                        </div>
-                    </td>
+                  <td>
+                      {% if educateur.isAdmin %}
+                          <span class="badge badge-pill badge-success">Administrateur</span>
+                      {% else %}
+                          <span class="badge badge-pill badge-danger">Educateur</span>
+                      {% endif %}
+                  </td>
+
+                  <td>
+                      <form method="post" action="{{ path('changer_statut_educateur', {'id': educateur.id}) }}">
+                          <button type="submit" class="btn btn-success btn-sm">Changer status</button>
+                      </form>
+                  </td>
                   </tr>
+
            
                {% endfor %}
                 

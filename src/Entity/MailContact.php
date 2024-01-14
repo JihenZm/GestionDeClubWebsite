@@ -16,8 +16,8 @@ class MailContact
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $DateEnvoi = null;
+    #[ORM\Column(length: 255)]
+    private ?string $DateEnvoi = null;
 
     #[ORM\Column(length: 255)]
     private ?string $Objet = null;
@@ -38,17 +38,18 @@ class MailContact
         return $this->id;
     }
 
-    public function getDateEnvoi(): ?\DateTimeInterface
+    public function getDateEnvoi(): ?string
     {
         return $this->DateEnvoi;
     }
 
-    public function setDateEnvoi(\DateTimeInterface $DateEnvoi): static
+    public function setDateEnvoi(string $DateEnvoi): static
     {
         $this->DateEnvoi = $DateEnvoi;
 
         return $this;
     }
+
 
     public function getObjet(): ?string
     {

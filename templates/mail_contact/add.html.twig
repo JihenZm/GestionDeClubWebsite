@@ -15,37 +15,31 @@
             </div>
         
             <div class="card-body px-lg-5 py-lg-5">
-                             
-       
+      
                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-                            
-                    <div class="mb-2">
-                <label for="educateurs" class="form-label">Éducateurs</label>
-                {{ form_widget(form.educateurs, {'attr': {'class': 'form-control'}}) }}
-            </div>
-
-              
-
-                 <div class="mb-2">
-                <label for="mailsubject" class="form-label" placeholder="Votre objet">Date D'envoi</label>
-                {{ form_widget(form.DateEnvoi, {'attr': {'class': 'form-control datepicker','placeholder': 'Votre date'}}) }}
-            </div>
-
+             
+             
+                <div class="mb-2">
+                    <label for="educateurs" class="form-label">Licenciés</label>
+                    {{ form_widget(form.licencies, {'attr': {'class': 'form-control'}}) }}
+                </div>
 
                 <div class="mb-2">
-                    <label for="mailsubject" class="form-label"  placeholder="Votre objet">Objet</label>
-                    {{ form_widget(form.objet, {'attr': {'class': 'form-control','placeholder': 'Votre objet'}}) }}
+                    <label for="mailsubject" class="form-label"  placeholder=" Votre objet">Objet</label>
+                    {{ form_widget(form.Objet, {'attr': {'class': 'form-control','placeholder': 'Votre objet'}}) }}
+                </div>
+                  <div class="mb-2">
+                    <label for="mailsubject" class="form-label"  placeholder=" Votre objet">Date</label>
+                    {{ form_widget(form.DateEnvoi, {'attr': {'class': 'form-control datepicker','placeholder': 'Votre date'}}) }}
                 </div>
 
                 <div class="write-mdg-box mb-3">
                     <label class="form-label">Message</label>
                 
-                        {{ form_widget(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Votre message' ,'rows': 6}}) }}
+                        {{ form_widget(form.Message, {'attr': {'class': 'form-control', 'placeholder': 'Votre message', 'rows': 6}}) }}
                 
                 </div>
-
-
                  {# <div class="write-mdg-box mb-3">
                     <label class="form-label">Message</label>
                 
@@ -66,8 +60,7 @@
                
         </div>
 </div></div></div>
- 
-{% block javascripts %}
+ {% block javascripts %}
     {{ parent() }}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -80,5 +73,5 @@
         });
     </script>
 {% endblock %}
-
+    
 {% endblock %}

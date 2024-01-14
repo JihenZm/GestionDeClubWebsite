@@ -18,21 +18,45 @@ class Educateur
 
     #[ORM\Column(length: 255)]
     private ?string $Email = null;
+    
+    #[ORM\Column(length: 255)]
+    private ?string $Nom = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Prenom = null;
 
     #[ORM\Column(length: 255)]
     private ?string $Password = null;
 
     #[ORM\Column]
-    private ?bool $isAdmin = null;
+    private ?bool $isAdmin  = false;
+    
+    #[ORM\Column(length: 255)]
+    private ?string $numLicence = null;
+
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn]
     private ?Licencie $Licencie = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
+    
+
+    public function getNumLicence(): ?string
+    {
+        return $this->numLicence;
+    }
+
+    public function setNumLicence(string $numLicence): static
+    {
+        $this->numLicence = $numLicence;
+
+        return $this;
+    }
+
 
     public function getEmail(): ?string
     {
@@ -45,6 +69,31 @@ class Educateur
 
         return $this;
     }
+
+    public function getPrenom(): ?string
+    {
+        return $this->Prenom;
+    }
+
+    public function setPrenom(string $Prenom): static
+    {
+        $this->Prenom = $Prenom;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->Nom;
+    }
+
+    public function setNom(string $Nom): static
+    {
+        $this->Nom = $Nom;
+
+        return $this;
+    }
+
 
     public function getPassword(): ?string
     {
